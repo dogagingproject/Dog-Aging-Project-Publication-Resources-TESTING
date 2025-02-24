@@ -6,11 +6,10 @@ on:
       manuscript_name:
         description: 'Enter the manuscript name (this will be the folder name)'
         required: true
-        default: 'New_Manuscript'
       disclaimer_text:
         description: 'Enter disclaimer text for the README'
         required: false
-        default: 'Disclaimer: This material is provided as-is without any guarantees.'
+        default: 'TEST - REMOVE THIS LATER; Disclaimer: This material is provided as-is without any guarantees.'
 
 jobs:
   create-folder:

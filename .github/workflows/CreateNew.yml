@@ -1,0 +1,42 @@
+name: Create New Manuscript Folder Structure
+
+on:
+  workflow_dispatch:
+    inputs:
+      manuscript_name:
+        description: 'Enter the manuscript name (this will be the folder name)'
+        required: true
+        default: 'New_Manuscript'
+      disclaimer_text:
+        description: 'Enter disclaimer text for the README'
+        required: false
+        default: 'Disclaimer: This material is provided as-is without any guarantees.'
+
+jobs:
+  create-folder:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create new manuscript folder structure
+        run: |
+          # Capture inputs
+          MANUSCRIPT_NAME="${{ github.event.inputs.manuscript_name }}"
+          DISCLAIMER="${{ github.event.inputs.disclaimer_text }}"
+          
+          # Create the folder structure
+          mkdir -p "$MANUSCRIPT_NAME/code" "$MANUSCRIPT_NAME/data"
+          
+          # Create README with disclaimer
+          echo "$DISCLAIMER" > "$MANUSCRIPT_NAME/README.md"
+          
+          # Configure Git (required for committing changes)
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Stage and commit changes
+          git add "$MANUSCRIPT_NAME"
+          git commit -m "Add folder structure for manuscript: $MANUSCRIPT_NAME"
+          git push

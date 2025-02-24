@@ -6,10 +6,6 @@ on:
       manuscript_name:
         description: 'Enter the manuscript name (this will be the folder name)'
         required: true
-      disclaimer_text:
-        description: 'Enter disclaimer text for the README'
-        required: false
-        default: 'TEST - REMOVE THIS LATER; Disclaimer: This material is provided as-is without any guarantees.'
 
 jobs:
   create-folder:
@@ -25,13 +21,13 @@ jobs:
           MANUSCRIPT_NAME="${{ github.event.inputs.manuscript_name }}"
           DISCLAIMER="${{ github.event.inputs.disclaimer_text }}"
           
-          # Create the folder structure
+          # Create the folder structure and add placeholder files
           mkdir -p "$MANUSCRIPT_NAME/code" "$MANUSCRIPT_NAME/data"
           touch "$MANUSCRIPT_NAME/code/.gitkeep"
           touch "$MANUSCRIPT_NAME/data/.gitkeep"
-          
-          # Create README with disclaimer
-          echo "$DISCLAIMER" > "$MANUSCRIPT_NAME/README.md"
+      
+          # Copy the template README from Template/README.md to the new manuscript folder
+          cp Template/README.md "$MANUSCRIPT_NAME/README.md"
           
           # Configure Git (required for committing changes)
           git config --local user.email "action@github.com"

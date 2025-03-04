@@ -32,17 +32,28 @@ jobs:
           JOURNAL="${{ github.event.inputs.journal_name }}"
           MANUSCRIPT="${{ github.event.inputs.manuscript_title }}"
           
-          # Function to sanitize strings: convert to lowercase and replace non-alphanumeric characters with underscores
-          sanitize() {
-            echo "$1" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g'
+          # Function to trim leading and trailing whitespace
+          trim() {
+            echo "$1" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
           }
           
-          # Sanitize each input
+          # Function to sanitize strings: trim, convert to lowercase, and replace non-alphanumeric characters with underscores
+          sanitize() {
+            local trimmed
+            trimmed=$(trim "$1")
+            echo "$trimmed" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g'
+          }
+          
+          # Sanitize inputs
           S_YEAR=$(sanitize "$YEAR")
           S_AUTHOR=$(sanitize "$AUTHOR")
           S_JOURNAL=$(sanitize "$JOURNAL")
-          S_MANUSCRIPT=$(sanitize "$MANUSCRIPT")
           
+          # For the manuscript title: trim, then truncate to first 50 characters, then sanitize.
+          TRIMMED_MANUSCRIPT=$(trim "$MANUSCRIPT")
+          TRUNC_MANUSCRIPT="${TRIMMED_MANUSCRIPT:0:50}"
+          S_MANUSCRIPT=$(sanitize "$TRUNC_MANUSCRIPT")
+                    
           # Create folder name based on concatenation (delimited by underscores)
           FOLDER_NAME="${S_YEAR}_${S_AUTHOR}_${S_JOURNAL}_${S_MANUSCRIPT}"
           

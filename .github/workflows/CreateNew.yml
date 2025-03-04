@@ -3,8 +3,17 @@ name: Create New Manuscript Folder Structure
 on:
   workflow_dispatch:
     inputs:
-      manuscript_name:
-        description: 'Enter the manuscript name (this will be the folder name)'
+      publication_year:
+        description: 'Enter 4-digit year of publication'
+        required: true
+      first_author_last_name:
+        description: 'Enter last name of first author'
+        required: true
+      journal_name:
+        description: 'Enter the journal name'
+        required: true
+      manuscript_title:
+        description: 'Enter the manuscript title'
         required: true
 
 jobs:
@@ -18,22 +27,40 @@ jobs:
       - name: Create new manuscript folder structure
         run: |
           # Capture inputs
-          MANUSCRIPT_NAME="${{ github.event.inputs.manuscript_name }}"
-          DISCLAIMER="${{ github.event.inputs.disclaimer_text }}"
+          YEAR="${{ github.event.inputs.publication_year }}"
+          AUTHOR="${{ github.event.inputs.first_author_last_name }}"
+          JOURNAL="${{ github.event.inputs.journal_name }}"
+          MANUSCRIPT="${{ github.event.inputs.manuscript_title }}"
+          
+          # Function to sanitize strings: convert to lowercase and replace non-alphanumeric characters with underscores
+          sanitize() {
+            echo "$1" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/_/g'
+          }
+          
+          # Sanitize each input
+          S_YEAR=$(sanitize "$YEAR")
+          S_AUTHOR=$(sanitize "$AUTHOR")
+          S_JOURNAL=$(sanitize "$JOURNAL")
+          S_MANUSCRIPT=$(sanitize "$MANUSCRIPT")
+          
+          # Create folder name based on concatenation (delimited by underscores)
+          FOLDER_NAME="${S_YEAR}_${S_AUTHOR}_${S_JOURNAL}_${S_MANUSCRIPT}"
+          
+          echo "Creating folder: $FOLDER_NAME"
           
           # Create the folder structure and add placeholder files
-          mkdir -p "$MANUSCRIPT_NAME/code" "$MANUSCRIPT_NAME/data"
-          touch "$MANUSCRIPT_NAME/code/.gitkeep"
-          touch "$MANUSCRIPT_NAME/data/.gitkeep"
+          mkdir -p "$FOLDER_NAME/code" "$FOLDER_NAME/data"
+          touch "$FOLDER_NAME/code/.gitkeep"
+          touch "$FOLDER_NAME/data/.gitkeep"
       
           # Copy the template README from Template/README.md to the new manuscript folder
-          cp Template/README.md "$MANUSCRIPT_NAME/README.md"
+          cp Template/README.md "$FOLDER_NAME/README.md"
           
           # Configure Git (required for committing changes)
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
           # Stage and commit changes
-          git add "$MANUSCRIPT_NAME"
-          git commit -m "Add folder structure for manuscript: $MANUSCRIPT_NAME"
+          git add "$FOLDER_NAME"
+          git commit -m "Add folder structure for manuscript: $FOLDER_NAME"
           git push

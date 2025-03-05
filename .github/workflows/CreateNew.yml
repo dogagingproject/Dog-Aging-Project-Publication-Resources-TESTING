@@ -69,8 +69,11 @@ jobs:
           # Prepend user input information to the README.md file
           {
             echo "Publication year: $S_YEAR"
+            echo ""
             echo "Author last name: $S_AUTHOR"
+            echo ""
             echo "Journal name: $S_JOURNAL"
+            echo ""
             echo "Manuscript title: $MANUSCRIPT"
             echo ""
             cat "$FOLDER_NAME/README.md"

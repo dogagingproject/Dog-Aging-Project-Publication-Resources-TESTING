@@ -55,9 +55,8 @@ jobs:
           S_MANUSCRIPT=$(sanitize "$TRUNC_MANUSCRIPT")
                     
           # Create folder name based on concatenation (delimited by underscores)
-          FOLDER_NAME="${S_YEAR}_${S_AUTHOR}_${S_JOURNAL}_${S_MANUSCRIPT}"
-          
           echo "Creating folder: $FOLDER_NAME"
+          FOLDER_NAME="${S_YEAR}_${S_AUTHOR}_${S_JOURNAL}_${S_MANUSCRIPT}"                  
           
           # Create the folder structure and add placeholder files
           mkdir -p "$FOLDER_NAME/code" "$FOLDER_NAME/data"
@@ -66,6 +65,17 @@ jobs:
       
           # Copy the template README from Template/README.md to the new manuscript folder
           cp Template/README.md "$FOLDER_NAME/README.md"
+
+          # Prepend user input information to the README.md file
+          {
+            echo "Publication year: $S_YEAR"
+            echo "Author last name: $S_AUTHOR"
+            echo "Journal name: $S_JOURNAL"
+            echo "Manuscript title: $MANUSCRIPT"
+            echo ""
+            cat "$FOLDER_NAME/README.md"
+          } > "$FOLDER_NAME/README.tmp" && mv "$FOLDER_NAME/README.tmp" "$FOLDER_NAME/README.md"
+          
           
           # Configure Git (required for committing changes)
           git config --local user.email "action@github.com"

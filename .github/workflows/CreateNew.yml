@@ -38,7 +38,7 @@ jobs:
           JOURNAL="${{ github.event.inputs.journal_name }}"
           MANUSCRIPT="${{ github.event.inputs.manuscript_title }}"
           CITATION="${{ github.event.inputs.full_citation }}"
-          DOILINK="${{ github.event.inputs.doi_link }}"          
+          DOILINK="${{ github.event.inputs.doi_link }}"
           
           # Function to trim leading and trailing whitespace
           trim() {

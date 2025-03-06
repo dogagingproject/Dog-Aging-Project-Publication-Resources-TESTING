@@ -2,10 +2,11 @@ ABOUT THIS REPO: This folder contains datasets and/or code used for the analyses
 
 ABOUT DAP DATA: Dog Aging Project (DAP) data consist of an extensive set of anonymized variables collected from tens of thousands of dogs. Data types include survey data, environmental data, and biospecimen lab results, among other data types. Curated data are released annually via the Terra platform to researchers worldwide for use in scientific research, curricular, and other nonprofit uses.
 
-Explore DAP data at [https://data.dogagingproject.org/](https://data.dogagingproject.org/)
-Apply for DAP data access [https://dogagingproject.org/data-access](https://dogagingproject.org/data-access)
+**Explore DAP data at** [https://data.dogagingproject.org/](https://data.dogagingproject.org/)
 
-IMPORTANT: By accessing the datasets in this repo, you are agreeing to abide by the terms of the DAP Data Use policy, including:
+**Apply for DAP data access** [https://dogagingproject.org/data-access](https://dogagingproject.org/data-access)
+
+**IMPORTANT**: By accessing the datasets in this repo, you are agreeing to abide by the terms of the DAP Data Use policy, including:
 
 The Dog Aging Project retains all rights of ownership to DAP data.
 DAP data are for the sole purposes of research, education, and investigative journalism. 

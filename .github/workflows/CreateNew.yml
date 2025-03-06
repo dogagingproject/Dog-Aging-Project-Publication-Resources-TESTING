@@ -39,6 +39,12 @@ jobs:
           MANUSCRIPT="${{ github.event.inputs.manuscript_title }}"
           CITATION="${{ github.event.inputs.full_citation }}"
           DOILINK="${{ github.event.inputs.doi_link }}"
+
+          # Check if the template README file exists
+          if [ ! -f "Template/README.md" ]; then
+            echo "Template/README.md does not exist. Please add the template file and try again."
+            exit 1
+          fi
           
           # Function to trim leading and trailing whitespace
           trim() {
@@ -70,7 +76,7 @@ jobs:
           mkdir -p "$FOLDER_NAME/code" "$FOLDER_NAME/data"
           touch "$FOLDER_NAME/code/.gitkeep"
           touch "$FOLDER_NAME/data/.gitkeep"
-      
+
           # Copy the template README from Template/README.md to the new manuscript folder
           cp Template/README.md "$FOLDER_NAME/README.md"
 

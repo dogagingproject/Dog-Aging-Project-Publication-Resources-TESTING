@@ -82,6 +82,10 @@ jobs:
 
           # Prepend user input information to the README.md file
           {
+            echo "ARTICLE: $CITATION"
+            echo ""
+            echo "$DOILINK"
+            echo ""          
             echo "Publication year: $S_YEAR"
             echo ""
             echo "Author last name: $S_AUTHOR"

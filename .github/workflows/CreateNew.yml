@@ -15,6 +15,12 @@ on:
       manuscript_title:
         description: 'Enter the manuscript title'
         required: true
+      full_citation:
+        description: 'Enter the full citation'
+        required: true
+      doi_link:
+        description: 'Enter the DOI link'
+        required: true        
 
 jobs:
   create-folder:
@@ -31,6 +37,8 @@ jobs:
           AUTHOR="${{ github.event.inputs.first_author_last_name }}"
           JOURNAL="${{ github.event.inputs.journal_name }}"
           MANUSCRIPT="${{ github.event.inputs.manuscript_title }}"
+          CITATION="${{ github.event.inputs.full_citation }}"
+          DOILINK="${{ github.event.inputs.doi_link }}"          
           
           # Function to trim leading and trailing whitespace
           trim() {
@@ -68,6 +76,10 @@ jobs:
 
           # Prepend user input information to the README.md file
           {
+            echo "ARTICLE: $CITATION"
+            echo ""
+            echo $DOILINK"
+            echo ""
             echo "Publication year: $S_YEAR"
             echo ""
             echo "Author last name: $S_AUTHOR"

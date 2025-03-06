@@ -62,11 +62,11 @@ jobs:
           TRUNC_MANUSCRIPT="${TRIMMED_MANUSCRIPT:0:50}"
           S_MANUSCRIPT=$(sanitize "$TRUNC_MANUSCRIPT")
                     
-          # Create folder name based on concatenation (delimited by underscores)
-          echo "Creating folder: $FOLDER_NAME"
+          # Create folder name based on concatenation (delimited by underscores)          
           FOLDER_NAME="${S_YEAR}_${S_AUTHOR}_${S_JOURNAL}_${S_MANUSCRIPT}"                  
           
           # Create the folder structure and add placeholder files
+          echo "Creating folder: $FOLDER_NAME"
           mkdir -p "$FOLDER_NAME/code" "$FOLDER_NAME/data"
           touch "$FOLDER_NAME/code/.gitkeep"
           touch "$FOLDER_NAME/data/.gitkeep"
@@ -76,6 +76,10 @@ jobs:
 
           # Prepend user input information to the README.md file
           {
+            echo "ARTICLE: $CITATION"
+            echo ""
+            echo $DOILINK"
+            echo ""
             echo "Publication year: $S_YEAR"
             echo ""
             echo "Author last name: $S_AUTHOR"

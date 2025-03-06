@@ -78,7 +78,7 @@ jobs:
           {
             echo "ARTICLE: $CITATION"
             echo ""
-            echo $DOILINK"
+            echo "$DOILINK"
             echo ""
             echo "Publication year: $S_YEAR"
             echo ""

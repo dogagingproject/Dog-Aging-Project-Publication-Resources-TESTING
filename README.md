@@ -1,4 +1,4 @@
-DOG AGING PROJECT PUBLICATION RESOURCES GITHUB REPOSITORY
+# DOG AGING PROJECT PUBLICATION RESOURCES GITHUB REPOSITORY
 
 ABOUT THIS REPO: This repository serves as the central hub for storing datasets and code files associated with research publications authored by the Dog Aging Project consortium. **These data represent currently embargoed Dog Aging Project data and are provided for the sole purpose of replicating published analyses in cases where the research publication uses currently embargoed data and the journal explicitly requires sharing of all data used.** In all other cases, readers should be directed to the standard DAP Curated Data via [dogagingproject.org/data-access/](https://dogagingproject.org/data-access). Manuscripts should specify how DAP Curated Data were subset for the analyses.
 

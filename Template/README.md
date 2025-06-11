@@ -1,6 +1,6 @@
-ABOUT THIS REPO: This folder contains datasets and/or code used for the analyses reported in the article cited above in fulfillment of the requirements of the publisher and for the sole purpose of replicating the analyses contained in the article. These data represent currently embargoed Dog Aging Project data or data otherwise unavailable in a DAP Curated Data Release.
+ABOUT THIS REPO: This folder contains datasets and/or code used for the analyses reported in the article cited above in fulfillment of the requirements of the publisher and for the sole purpose of replicating the analyses contained in the article. These data represent currently embargoed Dog Aging Project (DAP) data or data otherwise unavailable in a DAP Curated Data Release.
 
-ABOUT DAP DATA: Dog Aging Project (DAP) data consist of an extensive set of anonymized variables collected from tens of thousands of dogs. Data types include survey data, environmental data, and biospecimen lab results, among other data types. Curated Data are released annually via the Terra platform to researchers worldwide for use in scientific research, curricular, and other nonprofit uses.
+ABOUT DAP DATA: Dog Aging Project data consist of an extensive set of anonymized variables collected from tens of thousands of dogs. Data types include survey data, environmental data, and biospecimen lab results, among other data types. Curated Data are released annually via the Terra platform to researchers worldwide for use in scientific research, curricular, and other nonprofit uses.
 
 **Explore DAP data at** [https://data.dogagingproject.org/](https://data.dogagingproject.org/)
 

@@ -108,3 +108,16 @@ jobs:
           git add "$FOLDER_NAME"
           git commit -m "Add folder structure for manuscript: $FOLDER_NAME"
           git push
+
+          # Expose folder path for later steps
+          echo "folder_path=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${GITHUB_REF_NAME}/${FOLDER_NAME}" >> $GITHUB_OUTPUT
+
+      - name: Show folder link in logs
+        run: |
+          echo "✅ Folder created: ${{ steps.create.outputs.folder_path }}"
+
+      - name: Add folder link to summary
+        run: |
+          echo "### 📂 Manuscript Folder Created" >> $GITHUB_STEP_SUMMARY
+          echo "- **Folder name:** \`${{ env.FOLDER_NAME }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Browse it here:** [Open Folder](${{ steps.create.outputs.folder_path }})" >> $GITHUB_STEP_SUMMARY

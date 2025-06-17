@@ -2,7 +2,7 @@ ABOUT THIS PUBLICATION
 
 Year: 1855
 
-Author: kauffman
+Author: Kauffman
 
 Title: Drama
 
